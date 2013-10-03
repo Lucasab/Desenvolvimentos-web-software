@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Formulário de contato Mandaca.ru</title>
+    </head>
+    <body>
+	<form action="form_gera.php" method="post">
+<b>Envio das fotos</b><br />
+Qual a quantidade de imagens do Evento?<br /><br />
+<input type="text" name="quantidade" size="2"/><br />
+<input type="submit" value="OK"/>
+</form>
+<?php 
+
+$Quantidade = (isset($_POST["quantidade"]) && is_int(intval($_POST["quantidade"]))) ? (int)$_POST["quantidade"] : 2; 
+
+echo "<form action="processa_upload.php" method="POST" enctype="multipart/form-data">"; 
+echo "<b>Envio das fotos</b><br />"; 
+
+for($i = 1; $i <= $Quantidade; ++$i) 
+{ 
+echo "Foto #" . $i . ": <input type="file" name="fotos[]" /><br/>"; 
+} 
+echo "<br /><input type="submit" value="OK"/>"; 
+echo "</form>"; 
+
+?>
+</body>
+</html>
